@@ -6,7 +6,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Models\User;
+use App\Models\Employee;
+use App\Models\Student;
 
 class UserSeeder extends Seeder
 {
@@ -15,14 +16,24 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
+        Employee::create([
+            'name' => '',
+            'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), 
-            'remember_token' => Str::random(10),
+            'remember_token' => Str::random(6),
         ]);
 
-        User::factory(500)->create(); 
+        Employee::factory(100)->create(); 
+
+        Student::create([
+            'name' => '',
+            'email' => 'admin@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'), 
+            'remember_token' => Str::random(6),
+        ]);
+
+        Student::factory(100)->create(); 
     }
 }
