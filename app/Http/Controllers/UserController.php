@@ -2,42 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class UserController extends Controller
 {
     public function search(Request $request)
     {
         $search = $request->input('search');
 
-        $students = Student::where('name', 'LIKE', "%{$search}%")
+        $users = User::where('name', 'LIKE', "%{$search}%")
             ->orWhere('email', 'LIKE', "%{$search}%")
             ->get();
-        return response()->json($students);
+        return response()->json($users);
     }
 
     public function read()
     {
-        $students = Student::all();
-        return response()->json($students);
+        $users = User::all();
+        return response()->json($users);
     }
 
     public function create(Request $request)
     {
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|unique:Students,email',
+            'email' => 'required|unique:users,email',
             'password' => 'required'
         ]);
-        Student::create($request->all());
+        User::create($request->all());
         return "User created successfully!";        
     }
 
     public function update(Request $request, string $id)
     {
-        $student = Student::find($id);
-        if (!$student) {
+        $User = User::find($id);
+        if (!$User) {
             return response()->json(['message' => 'No user found'], 404);
         }
 
@@ -47,8 +47,8 @@ class StudentController extends Controller
             'password' => 'required'
         ]);
 
-        $student->update($request->all());
-        return response()->json(['message' => 'User updated successfully!', 'student' => $student]);
+        $User->update($request->all());
+        return response()->json(['message' => 'User updated successfully!', 'User' => $student]);
     }
 
     

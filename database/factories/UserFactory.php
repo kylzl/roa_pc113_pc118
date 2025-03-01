@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class EmployeeFactory extends Factory
+class UserFactory extends Factory
 {
     /**
      * The current password being used by the factory.
@@ -27,7 +27,7 @@ class EmployeeFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
             'password' => static::$password ??= Hash::make('password'),
+            'role' => fake()->randomElement(['employee', 'student']),
         ];
     }
-
 }
