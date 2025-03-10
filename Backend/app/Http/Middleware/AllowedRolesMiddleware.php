@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+
 class AllowedRolesMiddleware
 {
     /**
@@ -13,11 +14,14 @@ class AllowedRolesMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, $roles, Closure $next): Response
     {   
-        if(Auth::user()->role != 'admin'){
-            return response()->json(['message' => 'You are not allowed to access this route'], 403);
-        }
+       $user = $request->user();
+         if ($user->role !== 'admin') {
+              return next($request);
+            }if (!in_array($user->role, $roles)) {
+                return response()->json(['message' => 'You are not allowed to access this route'], 403);
+            }
         return $next($request);
     }
 }

@@ -48,17 +48,17 @@ class UserController extends Controller
         ]);
 
         $User->update($request->all());
-        return response()->json(['message' => 'User updated successfully!', 'User' => $student]);
+        return response()->json(['message' => 'User updated successfully!', 'User' => $User]);
     }
 
     
     public function delete(string $id)
     {
-        $student = Student::find($id);
-        if(!$student){
+        $user = User::find($id);
+        if(!$user){
             return "No user found";
         }else
-        $student->delete();
+        $user->delete();
         return "User successfully deleted!";
     }
     

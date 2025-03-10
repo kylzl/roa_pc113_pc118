@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('password');
             $table->timestamps();
         });
+        
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -56,5 +57,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('personal_access_tokens');
     }
 };
