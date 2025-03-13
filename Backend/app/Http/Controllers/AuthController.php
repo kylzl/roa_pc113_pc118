@@ -26,9 +26,6 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            // Regenerate session
-            $request->session()->regenerate();
-
             // Create Sanctum token
             $token = $user->createToken('auth_token')->plainTextToken;
 

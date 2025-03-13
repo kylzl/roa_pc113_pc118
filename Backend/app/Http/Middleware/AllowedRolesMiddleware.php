@@ -14,14 +14,13 @@ class AllowedRolesMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, $roles, Closure $next): Response
-    {   
-       $user = $request->user();
-         if ($user->role !== 'admin') {
-              return next($request);
-            }if (!in_array($user->role, $roles)) {
-                return response()->json(['message' => 'You are not allowed to access this route'], 403);
-            }
+    public function handle(Request $request, Closure $next, ...$roles): Response
+    {
+        $user = Auth::user();
+
+        if (!$user || !in_array($user->role, $roles)) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
         return $next($request);
     }
 }
