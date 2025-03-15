@@ -19,7 +19,7 @@ class AllowedRolesMiddleware
         $user = Auth::user();
 
         if (!$user || !in_array($user->role, $roles)) {
-            return response()->json(['error' => 'Unauthorized'], 403);
+            return response()->json(['error' => 'You are not authorized to access this route!'], 403);
         }
         return $next($request);
     }
