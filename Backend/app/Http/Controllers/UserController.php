@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     public function search(Request $request)
     {
         $search = $request->input('search');
@@ -17,10 +17,21 @@ class UserController extends Controller
         return response()->json($users);
     }
 
-    public function read()
+    public function getUserInfo(Request $request)
     {
-        $users = User::all();
-        return response()->json($users);
+    $user = $request->user();
+    
+    return response()->json([
+        'name' => $user->name,
+        'email' => $user->email,
+        'role' => $user->role
+    ]);
+}
+
+
+    public function show()
+    {
+        return response()->json(['data' => User::all()]);
     }
 
     public function create(Request $request)
