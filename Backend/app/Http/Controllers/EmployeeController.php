@@ -17,12 +17,16 @@ class EmployeeController extends Controller
         return response()->json($employees);
     }
 
-    public function read()
+    public function show()
     {
-        $employee = Employee::all();
-        return response()->json($employee);
+        $e = Employee::all(); 
+        $totalUsers = $e->count(); 
+    
+        return response()->json([
+            'data' => $e,
+            'total' => $totalUsers 
+        ]);
     }
-
     public function create(Request $request)
     {
         $request->validate([

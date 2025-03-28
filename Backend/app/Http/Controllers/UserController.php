@@ -29,17 +29,24 @@ class UserController extends Controller
 }
 
 
-    public function show()
-    {
-        return response()->json(['data' => User::all()]);
-    }
+public function show()
+{
+    $users = User::all(); 
+    $totalUsers = $users->count(); 
+
+    return response()->json([
+        'data' => $users,
+        'total' => $totalUsers 
+    ]);
+}
 
     public function create(Request $request)
     {
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|unique:users,email',
-            'password' => 'required'
+            'password' => 'required|min:6',
+            'role' => 'sometimes'
         ]);
         User::create($request->all());
         return "User created successfully!";        
@@ -55,7 +62,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'sometimes|required|string',
             'email' => 'sometimes',
-            'password' => 'required'
+            'role' => 'sometimes'
         ]);
 
         $User->update($request->all());

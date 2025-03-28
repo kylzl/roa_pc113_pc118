@@ -17,18 +17,18 @@
             <form id="loginForm">
                 <div class="mb-4">
                     <label class="block text-gray" for="email">Email</label>
-                    <input id="email" type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Your Email" >
+                    <input id="email" type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Your Email" required>
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray" for="password">Password</label>
-                    <input id="password" type="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Your Password" >
+                    <input id="password" type="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Your Password" required>
                 </div>
 
                 <button type="submit" class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600">Login</button>
             </form>
 
-            <p id="errorMessage" class="text-red-500 mt-2 hidden"></p> <!-- Error message display -->
+            <p id="errorMessage" class="text-red-500 mt-2 hidden"></p> 
 
         </div>
         <div class="w-1/2 flex items-center justify-center">
