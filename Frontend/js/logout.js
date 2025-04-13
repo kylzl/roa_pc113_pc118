@@ -1,6 +1,5 @@
 
 document.getElementById('logoutButton').addEventListener('click', async (event) => {
-    // console.log(document.getElementById('logoutButton'))
 
     event.preventDefault();
 
@@ -30,7 +29,7 @@ document.getElementById('logoutButton').addEventListener('click', async (event) 
             if (res.ok) {
                 localStorage.removeItem('token');
                 await Swal.fire("Logged out!", "You have been logged out successfully.", "success");
-                window.location.href = "login-form.php";
+                window.location.href = "../login-form.php";
             } else {
                 Swal.fire("Error", "Logout failed. Please try again.", "error");
             }
@@ -40,3 +39,10 @@ document.getElementById('logoutButton').addEventListener('click', async (event) 
         }
     }
 });
+
+// function logout() {
+//     sessionStorage.removeItem('user');
+//     window.location.href = 'login-form.php'; 
+// }
+
+// logout();

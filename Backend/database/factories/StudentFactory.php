@@ -24,9 +24,20 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->safeEmail(),
-            'password' => static::$password ??= Hash::make('password'),
+            'firstname' => fake()->firstName(),
+            'middlename' => fake()->optional()->firstName(),
+            'lastname' => fake()->lastName(),
+            'gender' => fake()->randomElement(['Male', 'Female']),
+            'birthdate' => fake()->date(),
+            'address' => fake()->address(),
+            'contact_number' => fake()->phoneNumber(),
+            'guardian_name' => fake()->name(),
+            'guardian_contact_number' => fake()->phoneNumber(),
+            'guardian_relationship' => fake()->randomElement(['Parent', 'Sibling', 'Relative', 'Other']),
+            'guardian_address' => fake()->address(),
+            'guardian_email' => fake()->safeEmail(),
+            'image' => fake()->optional()->imageUrl(),
+            'email' => fake()->unique()->safeEmail(),
         ];
     }
 }

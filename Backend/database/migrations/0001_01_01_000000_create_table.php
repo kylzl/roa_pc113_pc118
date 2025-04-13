@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image')->nullable(); 
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', ['admin', 'employee', 'student']);
+            $table->enum('role', ['admin', 'staff', 'manager']);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,9 +32,20 @@ return new class extends Migration
 
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('firstname');
+            $table->string('middlename')->nullable();
+            $table->string('lastname');
+            $table->string('gender');
+            $table->date('birthdate');
+            $table->string('address');
+            $table->string('contact_number');
+            $table->string('guardian_name');
+            $table->string('guardian_contact_number');
+            $table->string('guardian_relationship');
+            $table->string('guardian_address');
+            $table->string('guardian_email');
+            $table->string('image')->nullable();
             $table->string('email')->unique();
-            $table->string('password');
             $table->timestamps();
         });
 
@@ -58,15 +70,11 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('personal_access_tokens');
-        Schema::dropIfExists('sessions');
+        // Schema::dropIfExists('personal_access_tokens');
+        // Schema::dropIfExists('sessions');
         Schema::dropIfExists('students');
-        Schema::dropIfExists('employees');
-        Schema::dropIfExists('users');
+        // Schema::dropIfExists('users');
     }
 };
