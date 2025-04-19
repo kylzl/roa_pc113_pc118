@@ -11,13 +11,12 @@ document.getElementById('logoutButton').addEventListener('click', async (event) 
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, log out!",
-        cancelButtonText: "No, cancel!"
-    });
+        width: "400px" });
 
     if (result.isConfirmed) {
         try {
             let token = localStorage.getItem('token');
-            let res = await fetch('http://127.0.0.1:8000/api/logout', {
+            let res = await fetch('http://amsbackend.test/api/logout', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

@@ -12,7 +12,7 @@ $(document).ready(function () {
         formData.append('image', $('#createUserImage')[0].files[0]); 
                 
         $.ajax({
-            url: 'http://127.0.0.1:8000/api/users',
+            url: 'http://amsbackend.test/api/users',
             method: 'POST',
             processData: false,
             contentType: false,

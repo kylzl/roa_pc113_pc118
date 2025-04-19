@@ -38,7 +38,8 @@
                             <label for="updateUserRole" class="form-label">Role</label>
                             <select class="form-control" id="updateUserRole" required>
                                 <option value="admin">Admin</option>
-                                <option value="employee">Employee</option>
+                                <option value="manager">Manager</option>
+                                <option value="staff">Staff</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -52,6 +53,6 @@
 
     <script>
         let image = user.image 
-                            ? `<img src="http://127.0.0.1:8000/storage/${user.image}" alt="User Image" class="img-thumbnail" style="width: 50px; height: 50px;">` 
+                            ? `<img src="http://amsbackend.test/storage/${user.image}" alt="User Image" class="img-thumbnail" style="width: 50px; height: 50px;">` 
                             : `<img src="../images/default-image.png" alt="Default Image" class="img-thumbnail" style="width: 50px; height: 50px;">`;
     </script>

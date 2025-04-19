@@ -43,7 +43,7 @@ $('#updateUserForm').on('submit', function (e) {
     }
 
     $.ajax({
-        url: `http://127.0.0.1:8000/api/update-user/${userId}`,
+        url: `http://amsbackend.test/api/update-user/${userId}`,
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,

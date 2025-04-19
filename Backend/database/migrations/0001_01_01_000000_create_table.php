@@ -23,7 +23,7 @@ return new class extends Migration
         });
 
         Schema::create('employees', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('middlename')->nullable();
             $table->string('lastname');
             $table->string('gender');
-            $table->date('birthdate');
+            $table->date('birthdate')->nullable();
             $table->string('address');
             $table->string('contact_number');
             $table->string('guardian_name');
@@ -45,7 +45,7 @@ return new class extends Migration
             $table->string('guardian_address');
             $table->string('guardian_email');
             $table->string('image')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->timestamps();
         });
 
@@ -72,9 +72,9 @@ return new class extends Migration
 
     public function down(): void
     {
-        // Schema::dropIfExists('personal_access_tokens');
-        // Schema::dropIfExists('sessions');
+        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists('sessions');
         Schema::dropIfExists('students');
-        // Schema::dropIfExists('users');
+        Schema::dropIfExists('users');
     }
 };

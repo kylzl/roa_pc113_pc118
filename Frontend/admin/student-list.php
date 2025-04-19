@@ -1,43 +1,70 @@
+
+
 <?php
 include 'template.php';
+include '../modals/upload-students-csv.php';
 ?>
+<style>
+    table.dataTable {
+    border-collapse: collapse !important;
+    background-color: aquamarine;
+}
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+table.dataTable th,
+table.dataTable td {
+    /* border: 1px solid #09009; */
+    padding: 6px 10px;
+}
 
+.btn-blue {
+    background-color: #09033B;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    /* padding: 2px 4px; */
+}
+.btn-blue:hover{
+    cursor: pointer;
+    filter: brightness(95%);    
+}
+
+ .table-head {
+    background-color:rgb(18, 51, 100);
+    font-weight: bold;
+}
+
+</style>
 <div class="content">
-    <nav class="bar m-0">
-        <div class="">
-            <span class="bar-brand h6" id="total-students"></span>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadCsvModal">
-                Import Students
+    <nav class="bar m-0 d-flex justify-content-between align-items-center">
+        <div>
+            <h5 class="mb-0">STUDENTS LIST</h5>
+        </div>
+        <div>
+            <button class="btn blue px-3" data-bs-toggle="modal" data-bs-target="#addStudentModal" >
+                +
+            </button>
+            <button class="btn" data-bs-toggle="modal" data-bs-target="#uploadStudentsModal" style="background-color:rgb(248, 233, 69); font-weight: bold;">
+                UPLOAD/DOWNLOAD CSV
             </button>
         </div>
     </nav>
 
-    <div class="modal fade" id="uploadCsvModal" tabindex="-1" aria-labelledby="uploadCsvModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="uploadCsvModalLabel">Upload CSV</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="file" class="form-control mb-3" accept=".csv" id="csvInput" />
-                    <button class="btn btn-primary w-100" onclick="upload()">Upload</button>
-                </div>
-            </div>
-        </div>
-    </div> 
+    <div class="container mt-3 px-0">
 
-    <div class="container mt-2 px-0">
         <div class="card shadow-sm">
             <div class="card-body">
-                <table class="table table-hover table-striped table-bordered table-responsive" id="studentTable">
-                    <thead class="table-primary">
-                        <tr>
+            <div class="container mt-3 px-0">
+                <!-- <div class="d-flex justify-content-between mb-3">
+                        <input type="text" class="form-control me-2 w-80" id="searchInput" placeholder="Search">
+                        <select class="form-select w-25" id="yearLevelSelect"> 
+                            <option selected disabled>Year Level</option>
+                            <option value="first_year">First Year</option>
+                            <option value="second_year">Second Year</option>
+                        </select>
+                    </div> -->
+                <table class="table table-hover table-responsive" id="studentTable">
+                    <thead class="table-secondary table-head">
+                        <tr class="text-center">
                             <th>ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
@@ -45,7 +72,9 @@ include 'template.php';
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <!-- Students data here-->
+                    </tbody>
                 </table>
             </div>
         </div>

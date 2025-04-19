@@ -1,0 +1,8 @@
+ctrl+shift+l
+
+
+<script>
+  const notyf = new Notyf();
+  notyf.success('Success!');
+  notyf.error('Something went wrong!');
+</script>

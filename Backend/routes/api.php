@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/students/upload-csv', [StudentController::class, 'uploadCsv']);
+
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);

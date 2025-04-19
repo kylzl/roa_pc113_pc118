@@ -1,7 +1,10 @@
+
+
 if (localStorage.getItem('token')) {
+    const notyf = new Notyf(); 
     let token = localStorage.getItem('token');
 
-    fetch('http://127.0.0.1:8000/api/user-info', {
+    fetch('http://amsbackend.test/api/user-info', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -11,7 +14,7 @@ if (localStorage.getItem('token')) {
     })
     .then(response => {
         if (response.status === 401) {
-            alert('Session has expired. Please log in again.');
+            notyf.error('Session has expired. Please log in again.');
             localStorage.removeItem('token');
             window.location.href = '../login-form.php';
             return;
@@ -19,7 +22,6 @@ if (localStorage.getItem('token')) {
         return response.json();
     })
     .then(data => {
-
         console.log('User Info:', data);
         sessionStorage.setItem('user', JSON.stringify(data));
 
@@ -28,7 +30,7 @@ if (localStorage.getItem('token')) {
             document.getElementById('auth-user-email').textContent = data.email;
 
             let userImage = data.image && typeof data.image === 'string' && data.image.trim() !== "" 
-                ? (data.image.startsWith('http') ? data.image : `http://127.0.0.1:8000/storage/${data.image}`)
+                ? (data.image.startsWith('http') ? data.image : `http://amsbackend.test/storage/${data.image}`)
                 : '../images/default-image.png';
 
             document.getElementById('auth-user-image').src = userImage;
@@ -36,13 +38,15 @@ if (localStorage.getItem('token')) {
             console.error('Invalid user data:', data);
             document.getElementById('auth-user-name').textContent = 'Unknown User';
             document.getElementById('auth-user-email').textContent = 'No Email Available';
+            notyf.error('Failed to retrieve user information.');
         }
     })
     .catch(error => {
         console.error('Fetch Error:', error);
-        console.log('Something went wrong. Please try again later.');
+        notyf.error('Something went wrong. Please try again later.');
     });
 } else {
-    alert('You are not logged in!');
+    const notyf = new Notyf(); // Initialize Notyf.js
+    notyf.error('You are not logged in!');
     window.location.href = '../login-form.php';
 }

@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            /* background-color: #09033B; */
+            background-color:rgb(201, 196, 247);
             background-image: url('images/background-image.jpg');
             background-size: cover;
             background-position: center;    
@@ -72,7 +72,7 @@
             errorMessage.classList.add('hidden');
 
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/login', {
+                const response = await fetch('http://amsbackend.test/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -80,6 +80,7 @@
                     },
                     body: JSON.stringify({ email, password })
                 });
+
 
                 const data = await response.json();
 

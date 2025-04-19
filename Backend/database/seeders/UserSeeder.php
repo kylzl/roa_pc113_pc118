@@ -28,8 +28,8 @@ class UserSeeder extends Seeder
             'role' => 'manager'
         ]);
 
-        User::factory(100)->create(); 
-        Student::factory(100)->create(); 
+        User::factory(8)->create(); 
+        Student::factory(20)->create(); 
 
     }
 }

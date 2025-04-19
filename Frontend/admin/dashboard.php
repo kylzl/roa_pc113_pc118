@@ -1,11 +1,11 @@
 
     
     <?php    
-    session_start();
-    include '../config.php';
     include 'template.php';
-
     ?>    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
 
 <style>
     a{
@@ -22,12 +22,15 @@
         <div class="container mt-4">
             <div class="row">
                 <div class="col-md-3">
-                    <div id="show-students" class="card-dashboard p-3">
-                        <h5>Total Students</h5>
-                        <h3 id="total-students">0</h3>
-                        <a href="student-list.php">See list</a>
-                    </div>
+                    <div id="show-students" class="card-dashboard p-4">
+                        <h4>Today's Attendance
+</h4>
+                        <div class="card-body">
+                            <a href="student-list.php">View Report</a>
+    
                 </div>
+            </div>
+           
             </div>
         </div>
         <?php 
@@ -38,8 +41,6 @@
 
     </div>
 
-
-
-
+<script src="../js/fetch-students.js"></script>
 
  

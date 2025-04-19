@@ -9,22 +9,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Attendance Monitoring</title>
   <link rel="icon" type="image/png" href="../images/uiia(2).png" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <script src="../js/verify-token.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropify/dist/css/dropify.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dropify/dist/js/dropify.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="../js/verify-token.js"></script>
   <style>
     body {
       background-color: #e9f1ff;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Poppins', sans-serif !important;
       margin: 0;
       height: 100vh;
+      font-size: small;
     }
 
     .sidebar {
       height: 100vh;
-      width: 20%;
+      width: 18%;
       position: fixed;
       top: 0;
       left: 0;
@@ -57,9 +66,9 @@
     .navbar {
       width: 100%;
       background-color:rgb(9, 3, 59);
-      position: fixed;
       top: 0;
-      z-index: 999;
+      position: fixed;
+      z-index: 1000;
       overflow: hidden;
       display: flex;
       justify-content: space-between;
@@ -70,10 +79,9 @@
     }
 
     .content {
-      margin-top:50px;
-      margin-left: 20%;
+      margin-top: 5%;
+      margin-left: 18%;
       padding: 2rem;
-      /* background-color:rgb(64, 146, 204); */
     }
    .page-title {
       font-weight: 500;
@@ -90,11 +98,11 @@
 
     .modal-dialog-user {
       position: fixed;
-      top: -150px;
-      right: 15px;
-      z-index: 9999;
+      top: -10px;
+      right: 10px;
       width: 15%;
-    }
+      z-index: 9000; 
+}
 
     #auth-user-name {
       cursor: pointer;
@@ -140,22 +148,23 @@
   </nav>
 
   <div class="sidebar mt-4 ">
-    <a href="dashboard.php"><i class="fas fa-home me-2 mt-5 "></i> Dashboard</a>
-    <a href="users.php"><i class="fas fa-users me-2"></i> Users</a>
-    <a href="reports.php"><i class="fas fa-clipboard me-2"></i> Reports</a>
+    <a href="dashboard.php"><i class="fas fa-home me-4 mt-5 "></i> Dashboard</a>
+    <a href="reports.php"><i class="fas fa-clipboard me-4"></i> Reports</a>
+    <a href="student-list.php"><i class="fas fa-graduation-cap me-3"></i> Student Management</a>
+    <a href="users.php"><i class="fas fa-users me-3"></i> Users</a>
   </div>
 
 
 
   <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-user modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-user">
       <div class="modal-content text-center p-3">
         <div class="modal-body">
           <img src="../images/default-image.png"
                class="rounded-circle mb-2"
                width="80"
                height="80"
-               id="auth-user-image"
+               id="modal-auth-user-image"
                alt="Profile">
           <h6><p class="mb-0" id="auth-user-name"></p></h6>
           <p class="text-muted small mb-3" id="auth-user-email"></p>
@@ -178,3 +187,16 @@
 
 <script src="../js/logout.js"></script>
 <script src="../js/template.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const mainUserImage = document.getElementById('auth-user-image');
+      const modalUserImage = document.getElementById('modal-auth-user-image');
+
+      $('#userModal').on('show.bs.modal', function () {
+          if (mainUserImage && modalUserImage) {
+              modalUserImage.src = mainUserImage.src;
+          }
+      });
+  });
+</script>
