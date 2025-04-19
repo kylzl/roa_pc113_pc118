@@ -36,7 +36,7 @@ table.dataTable td {
 </style>
 <div class="content">
     <nav class="bar m-0 d-flex justify-content-between align-items-center">
-        <div>
+        <div>     
             <h5 class="mb-0">STUDENTS LIST</h5>
         </div>
         <div>
